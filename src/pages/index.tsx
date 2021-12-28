@@ -16,17 +16,14 @@ export default function HomePage (props: HomeTemplateProps) {
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve('price_1KA15HGY61UIpKp6AwOQjTbB', {
+  const price = await stripe.prices.retrieve(process.env.STRIPE_PRODUCT_PRICE!, {
     expand: ['product']
   })
 
   const product = {
     id: price.id,
-    amount: new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(price.unit_amount! / 100)
-  } 
+    amount: price.unit_amount
+  }
 
   return {
     revalidate: 60 * 60 * 24, // 1 day
