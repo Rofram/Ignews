@@ -1,10 +1,11 @@
 import { SubscribeButton, SubscribeButtonProps } from '../../components/SubscribeButton'
+import formatPrice from '../../utils/formatPrice'
 import styles from './styles.module.scss'
 
 export type HomeTemplateProps = {
   product: {
     buttonProps: SubscribeButtonProps
-    amount: string
+    amount: number
   }
 }
 
@@ -16,7 +17,7 @@ export function HomeTemplate({ product: { buttonProps, amount } }: HomeTemplateP
         <h1>News amount the <span>React</span> world.</h1>
         <p>
           Get access to all the publications <br />
-          <span>for {amount} month</span>
+          <span>for {formatPrice(amount)} month</span>
         </p>
         <SubscribeButton {...buttonProps} />
       </section>
