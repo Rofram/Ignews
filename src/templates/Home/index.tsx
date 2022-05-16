@@ -9,7 +9,7 @@ export type HomeTemplateProps = {
   }
 }
 
-export function HomeTemplate({ product: { buttonProps, amount } }: HomeTemplateProps) {
+export function HomeTemplate({ product }: HomeTemplateProps) {
   return (
     <main className={styles.contentContainer}>
       <section className={styles.hero}>
@@ -17,9 +17,9 @@ export function HomeTemplate({ product: { buttonProps, amount } }: HomeTemplateP
         <h1>News amount the <span>React</span> world.</h1>
         <p>
           Get access to all the publications <br />
-          <span>for {formatPrice(amount)} month</span>
+          <span>for {formatPrice(product.amount)} month</span>
         </p>
-        <SubscribeButton {...buttonProps} />
+        <SubscribeButton {...product.buttonProps} />
       </section>
       <img src="/images/avatar.svg" alt="Man coding" />
     </main>
